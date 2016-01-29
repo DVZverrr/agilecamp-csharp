@@ -11,7 +11,8 @@ namespace AFT
     {
        private const string InvalidEmail = "abc";
        private const string ValidEmail = "abc@yandex.ru";
-       private const string InvalidErrorEmailMessage = "Поле Email не содержит допустимый адрес электронной почты.";
+      private const string ValidPass = "Qwerty123#";
+      private const string InvalidErrorEmailMessage = "Поле Email не содержит допустимый адрес электронной почты.";
 
        [Test]
         public void IfEmailAddressIsNotValid_ShowValidationMessage()
@@ -61,5 +62,21 @@ namespace AFT
                () => lp.EmailErrorMessage());
          }
       }
-    }
+
+      [Test]
+      public void IfPasswordIsValid_NotShowLoginErrorMessage()
+      {
+         using (var driver = new ChromeDriver())
+         {
+
+            var lp = new LoginPage(driver)
+               .Navigate()
+               .PasswordInput(ValidPass)
+               .SubmitButton();
+
+            Assert.Throws<NoSuchElementException>(
+               () => lp.PasswordErrorMessage());
+         }
+      }
+   }
 }

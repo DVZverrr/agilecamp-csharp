@@ -35,5 +35,16 @@ namespace AFT
          _driver.Navigate().GoToUrl("http://localhost:49333/Account/Login");
          return this;
       }
+
+      public LoginPage PasswordInput(string text)
+      {
+         _driver.FindElementByXPath("//*[@id='loginForm']/form/div[2]/div/input").SendKeys(text);
+         return this;
+      }
+
+      public IWebElement PasswordErrorMessage()
+      {
+         return _driver.FindElementByXPath("//*[@id='loginForm']/form/div[2]/div/span/span");
+      }
    }
 }
