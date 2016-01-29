@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgileCamp.Habitator.Tests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleTests", "ModuleTests\ModuleTests.csproj", "{185C54C4-DCA9-408C-A21A-13BE028021E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AFT", "AFT\AFT.csproj", "{2A0FAEEC-3EE6-404D-87A2-CD99400480AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{185C54C4-DCA9-408C-A21A-13BE028021E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185C54C4-DCA9-408C-A21A-13BE028021E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{185C54C4-DCA9-408C-A21A-13BE028021E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A0FAEEC-3EE6-404D-87A2-CD99400480AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A0FAEEC-3EE6-404D-87A2-CD99400480AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A0FAEEC-3EE6-404D-87A2-CD99400480AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A0FAEEC-3EE6-404D-87A2-CD99400480AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
