@@ -60,6 +60,25 @@ namespace ModuleTests
          Assert.Throws<NullReferenceException>(() => new Habit());
       }
 
+      [Test]
+      public void IfNameHasLessOrEqualThenTwoCharactersThenException()
+      {
+         Assert.Throws<ArgumentException>(() => new Habit("ab"));
+      }
+
+      [Test]
+      public void IfNameIsCorrectThenHabitCreates()
+      {
+         Assert.DoesNotThrow(() => new Habit("abc"));
+      }
+
+      [Test]
+      public void IfNameIsCorrectHabitHasFormattedProp()
+      {
+         var abc = "abc";
+         var h = new Habit(abc);
+         Assert.AreEqual(string.Format("Привычка: {0}",abc),h.Name);
+      }
 //      [Test]
 //      public void DateTest()
 //      {
