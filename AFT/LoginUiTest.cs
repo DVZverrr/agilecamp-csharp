@@ -1,4 +1,6 @@
-﻿namespace AFT
+﻿using OpenQA.Selenium;
+
+namespace AFT
 {
     using NUnit.Framework;
     using OpenQA.Selenium.Chrome;
@@ -7,22 +9,57 @@
 
     public class LoginUiTest
     {
-        [Test]
+       private const string InvalidEmail = "abc";
+       private const string ValidEmail = "abc@yandex.ru";
+       private const string InvalidErrorEmailMessage = "Поле Email не содержит допустимый адрес электронной почты.";
+
+       [Test]
         public void IfEmailAddressIsNotValid_ShowValidationMessage()
         {
             using (var driver = new ChromeDriver())
             {
-                driver.Navigate().GoToUrl("http://localhost:49333/Account/Login");
+               var loginErrorMessageDisplayed = new LoginPage(driver)
+                  .Navigate()
+                  .SubmitButton()
+                  .EmailErrorMessage()
+                  .Displayed;
 
-                var loginErrorMessage1 = driver.FindElementsByXPath("//*[@id='loginForm']/form/div[1]/div/span/span");
-                Assert.AreEqual(0, loginErrorMessage1.Count);
-
-                driver.FindElementByXPath("//*[@id='loginForm']/form/div[4]/div/input").Click();
-
-                var loginErrorMessage = driver.FindElementByXPath("//*[@id='loginForm']/form/div[1]/div/span/span");
-
-                Assert.True(loginErrorMessage.Displayed);
+               Assert.True(loginErrorMessageDisplayed);
             }
         }
+
+
+      [Test]
+      public void IfEmailAddressIsNotValid_ShowLoginErrorMessage()
+      {
+         using (var driver = new ChromeDriver())
+         {
+            var lp = new LoginPage(driver)
+               .Navigate()
+               .EmailInput(InvalidEmail)
+               .SubmitButton();
+
+            var loginErrorMessage = lp.EmailErrorMessage();
+            
+            Assert.AreEqual(loginErrorMessage.Text, InvalidErrorEmailMessage);
+         }
+      }
+
+       
+       [Test]
+      public void IfEmailAddressIsValid_NotShowLoginErrorMessage()
+      {
+         using (var driver = new ChromeDriver())
+         {
+
+            var lp = new LoginPage(driver)
+               .Navigate()
+               .EmailInput(ValidEmail)
+               .SubmitButton();
+
+            Assert.Throws<NoSuchElementException>(
+               () => lp.EmailErrorMessage());
+         }
+      }
     }
 }
