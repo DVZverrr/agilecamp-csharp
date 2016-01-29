@@ -35,8 +35,8 @@ namespace ModuleTests
       [Test]
       public void FailTest2()
       {
-         var s = string.Format("{0} isequil {1}", 10, 20); // 10 isequil 20
-         Assert.False(s=="10 is equil 10");
+         var s = string.Format("{0} isequal {1}", 10, 20); // 10 isequil 20
+         Assert.False(s=="10 is equal 10");
       }
 
       [Test]
